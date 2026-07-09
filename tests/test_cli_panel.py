@@ -11,7 +11,7 @@ from chronocatalog_desktop.base import cli, load_archive
 from chronocatalog_desktop.history import HistoryPage
 from chronocatalog_desktop.rename import RenamePage
 from chronocatalog_desktop.verify import VerifyPage
-from tests.support import write_config
+from tests.support import page_of, write_config
 
 
 def test_cli_quotes_paths() -> None:
@@ -29,9 +29,8 @@ class TestPanels:
     ) -> None:
         window = self.make_window(tmp_path)
         providers = {
-            type(page): page.cli_commands()
-            for page in (window.stack.widget(1), window.stack.widget(2))
-            if isinstance(page, VerifyPage | RenamePage)
+            kind: page_of(window, kind).cli_commands()  # type: ignore[attr-defined]
+            for kind in (VerifyPage, RenamePage)
         }
         verify_commands = dict(providers[VerifyPage])
         assert verify_commands["Check everything"].startswith("chronocatalog verify --config")
@@ -42,7 +41,7 @@ class TestPanels:
         self, qapp: QtWidgets.QApplication, tmp_path: Path
     ) -> None:
         window = self.make_window(tmp_path)
-        page = window.stack.widget(1)
+        page = page_of(window, VerifyPage)
         assert isinstance(page, VerifyPage)
         page.recheck.setChecked(True)
         assert all("--full" in command for _, command in page.cli_commands())
