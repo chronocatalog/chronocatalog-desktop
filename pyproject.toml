@@ -38,7 +38,7 @@ Repository = "https://github.com/chronocatalog/chronocatalog-desktop"
 Changelog = "https://github.com/chronocatalog/chronocatalog-desktop/blob/main/CHANGELOG.md"
 Issues = "https://github.com/chronocatalog/chronocatalog-desktop/issues"
 
-[project.scripts]
+[project.gui-scripts]
 chronocatalog-desktop = "chronocatalog_desktop.app:main"
 
 [project.optional-dependencies]
