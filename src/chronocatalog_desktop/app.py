@@ -16,7 +16,16 @@ from pathlib import Path
 from chronocatalog.config import ConfigError, load_config
 from PySide6 import QtCore, QtGui, QtWidgets
 
-from chronocatalog_desktop import history, import_view, organize, rename, settings, theme, verify
+from chronocatalog_desktop import (
+    history,
+    import_view,
+    organize,
+    relocate,
+    rename,
+    settings,
+    theme,
+    verify,
+)
 from chronocatalog_desktop.base import Archive, Page, load_archive
 from chronocatalog_desktop.overview import OverviewPage
 
@@ -34,6 +43,7 @@ VIEWS: tuple[ViewSpec, ...] = (
     ViewSpec("Organize", organize.BLURB, organize.OrganizePage),
     ViewSpec("Verify", verify.BLURB, verify.VerifyPage),
     ViewSpec("Rename", rename.BLURB, rename.RenamePage),
+    ViewSpec("Relocate", relocate.BLURB, relocate.RelocatePage),
     ViewSpec("History", history.BLURB, history.HistoryPage),
     ViewSpec("Settings", settings.BLURB, settings.SettingsPage),
 )
