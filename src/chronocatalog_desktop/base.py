@@ -31,7 +31,7 @@ from chronocatalog_desktop import theme
 if TYPE_CHECKING:
     from chronocatalog_desktop.app import MainWindow
 
-MONO = "font-family: Menlo, monospace; font-size: 12px;"
+MONO = f"font-family: {theme.MONO_FAMILY}; font-size: 12px;"
 
 
 @dataclass(frozen=True)
